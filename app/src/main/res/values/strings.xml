@@ -5,4 +5,8 @@
     <string name="start">Start</string>
     <string name="lux">lux</string>
     <string name="title">Luminosity Detector</string>
+    <string name="max">Max Range</string>
+    <string name="power">Power</string>
+    <string name="max_delay">Max Delay</string>
+    <string name="min_delay">Min Delay</string>
 </resources>
