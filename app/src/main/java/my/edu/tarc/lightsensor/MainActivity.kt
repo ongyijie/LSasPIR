@@ -6,12 +6,11 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 
 @SuppressLint("NewApi")
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -24,6 +23,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var textViewMaxRange: TextView
     private lateinit var textViewMaxDelay: TextView
     private lateinit var textViewMinDelay: TextView
+
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
     }
@@ -41,8 +41,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             textViewMaxRange.text = lightSensor!!.maximumRange.toString()
             textViewMaxDelay.text = lightSensor!!.maxDelay.toString()
             textViewMinDelay.text = lightSensor!!.minDelay.toString()
-
         }
+
+        val database = FirebaseDatabase.getInstance()
+        val lightSensor= database.getReference("LightSensor")
+        lightSensor.setValue(event.values[0].toString())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
