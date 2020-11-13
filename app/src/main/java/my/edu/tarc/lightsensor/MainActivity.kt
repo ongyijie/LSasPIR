@@ -10,7 +10,9 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.database.FirebaseDatabase
+
 
 @SuppressLint("NewApi")
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -43,7 +45,45 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             textViewMinDelay.text = lightSensor!!.minDelay.toString()
         }
 
+        //Declaring variables
+        val reading: Float = event.values[0]
+        var relay1: String = "0"    //Lights
+        var relay2: String = "0"    //Aircond
+        var lcdscr: String = "0"    //Projector
+        var lcdtxt: String = ""
+
+        //if-else statement to trigger action (switch on lights and air conditioner)
+        if (reading < 100) {
+            relay1 = "1"
+            relay2 = "1"
+            lcdscr = "1"
+            lcdtxt = "****Welcome!****"
+        } else {
+            relay1 = "0"
+            relay2 = "0"
+            lcdscr = "0"
+            lcdtxt = ""
+        }
+
         val database = FirebaseDatabase.getInstance()
+
+        //val options = FirebaseOptions.Builder()
+                //.setApiKey("AIzaSyCSc4UTyiRiPXl0s6B8ykO89H5ZoRhHhL0")
+                //.setApplicationId("solenoid-lock-f65e8")
+                //.setDatabaseUrl("https://console.firebase.google.com/u/0/project/solenoid-lock-f65e8/database/solenoid-lock-f65e8/data")
+                //.build()
+
+        //To common resources firebase
+        val data1 = database.getReference("PI_03_CONTROL/relay1")
+        data1.setValue(relay1)
+        val data2 = database.getReference("PI_03_CONTROL/relay2")
+        data2.setValue(relay2)
+        val data3 = database.getReference("PI_03_CONTROL/lcdscr")
+        data3.setValue(lcdscr)
+        val data4 = database.getReference("PI_03_CONTROL/lcdtxt")
+        data4.setValue(lcdtxt)
+
+        //To our own firebase
         val lightSensor= database.getReference("LightSensor")
         lightSensor.setValue(event.values[0].toString())
     }
