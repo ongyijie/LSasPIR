@@ -1,4 +1,4 @@
-package my.edu.tarc.lightsensor
+package my.edu.tarc.ls_as_pir
 
 import android.annotation.SuppressLint
 import android.hardware.Sensor
@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseOptions
 import com.google.firebase.database.FirebaseDatabase
 
 
@@ -18,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
+    //Declaring variables
     private var sensorManager: SensorManager? = null
     private var lightSensor: Sensor? = null
     private lateinit var textViewReading: TextView
@@ -30,7 +30,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
     }
 
+    //Function that runs whenever sensor detect changes
     override fun onSensorChanged(event: SensorEvent?) {
+
+        //Link UI to program
         textViewReading = findViewById(R.id.textViewReading)
         textViewPower = findViewById(R.id.textViewPower)
         textViewMaxRange = findViewById(R.id.textViewMaxRange)
@@ -48,23 +51,24 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         //Declaring variables
         val reading: Float = event.values[0]
         var relay1: String = "0"    //Lights
-        var relay2: String = "0"    //Aircond
+        var relay2: String = "0"    //Air conditioner
         var lcdscr: String = "0"    //Projector
         var lcdtxt: String = ""
 
-        //if-else statement to trigger action (switch on lights and air conditioner)
-        if (reading < 100) {
+        //if-else statement to trigger actions (switch on lights, air conditioner and projector)
+        if (reading < 100) { //switch on
             relay1 = "1"
             relay2 = "1"
             lcdscr = "1"
             lcdtxt = "****Welcome!****"
-        } else {
+        } else {             //switch off
             relay1 = "0"
             relay2 = "0"
             lcdscr = "0"
             lcdtxt = ""
         }
 
+        //Defining database
         val database = FirebaseDatabase.getInstance()
 
         //val options = FirebaseOptions.Builder()
@@ -73,7 +77,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 //.setDatabaseUrl("https://console.firebase.google.com/u/0/project/solenoid-lock-f65e8/database/solenoid-lock-f65e8/data")
                 //.build()
 
-        //To common resources firebase
+        //Write to common resources firebase
         val data1 = database.getReference("PI_03_CONTROL/relay1")
         data1.setValue(relay1)
         val data2 = database.getReference("PI_03_CONTROL/relay2")
@@ -83,7 +87,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val data4 = database.getReference("PI_03_CONTROL/lcdtxt")
         data4.setValue(lcdtxt)
 
-        //To our own firebase
         val lightSensor= database.getReference("LightSensor")
         lightSensor.setValue(event.values[0].toString())
     }
@@ -92,6 +95,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Calling Android light sensor
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager?
         lightSensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_LIGHT)
     }

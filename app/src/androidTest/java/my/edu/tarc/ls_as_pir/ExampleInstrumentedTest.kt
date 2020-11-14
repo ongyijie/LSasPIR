@@ -1,4 +1,4 @@
-package my.edu.tarc.lightsensor
+package my.edu.tarc.ls_as_pir
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

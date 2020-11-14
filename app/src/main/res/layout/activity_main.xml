@@ -12,7 +12,7 @@
         android:id="@+id/textViewLS"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="607dp"
         android:fontFamily="serif"
         android:gravity="center"
@@ -21,27 +21,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533" />
-
-    <TextView
-        android:id="@+id/textViewReadingTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="serif"
-        android:text="@string/reading"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLS" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -59,16 +42,9 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintHorizontal_bias="0.817"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/textViewReadingTag" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="266dp" />
 
     <TextView
         android:id="@+id/textViewUnitLux"
@@ -80,12 +56,41 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewReading"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/textViewReading" />
+        app:layout_constraintTop_toTopOf="@+id/textViewReading"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textViewRangeTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="59dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="@string/max"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPowerTag" />
+
+    <TextView
+        android:id="@+id/textViewPowerTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="59dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="@string/power"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReadingTag" />
+
+    <TextView
+        android:id="@+id/textViewReadingTag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -94,55 +99,27 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:fontFamily="serif"
-        android:text="@string/max"
+        android:text="@string/reading"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPowerTag" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
 
     <TextView
-        android:id="@+id/textViewPowerTag"
+        android:id="@+id/textViewMinDelay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         android:fontFamily="serif"
-        android:text="@string/power"
+        android:text="TextView"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textViewReadingTag" />
-
-    <TextView
-        android:id="@+id/textViewMaxTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="serif"
-        android:text="@string/max_delay"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRangeTag" />
-
-    <TextView
-        android:id="@+id/textViewMinTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:fontFamily="serif"
-        android:text="@string/min_delay"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMaxTag" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewMinTag"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textViewMinTag" />
 
     <TextView
         android:id="@+id/textViewPower"
@@ -152,10 +129,39 @@
         android:text="TextView"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPowerTag"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.745"
+        app:layout_constraintHorizontal_bias="0.862"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/textViewPowerTag" />
+
+    <TextView
+        android:id="@+id/textViewMaxTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="@string/max_delay"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRangeTag" />
+
+    <TextView
+        android:id="@+id/textViewMinTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="59dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="@string/min_delay"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMaxTag" />
 
     <TextView
         android:id="@+id/textViewMaxRange"
@@ -165,8 +171,9 @@
         android:text="TextView"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewRangeTag"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/textViewRangeTag" />
 
@@ -178,22 +185,38 @@
         android:text="TextView"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewMaxTag"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/textViewMaxTag" />
 
-    <TextView
-        android:id="@+id/textViewMinDelay"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="serif"
-        android:text="TextView"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.725"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/textViewMinTag" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="266dp" />
+
+    <TextView
+        android:id="@+id/textViewDesc"
+        android:layout_width="318dp"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:text="@string/desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLS" />
+
+    <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMinDelay" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
