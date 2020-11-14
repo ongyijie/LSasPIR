@@ -7,10 +7,14 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 @SuppressLint("NewApi")
@@ -68,27 +72,32 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             lcdtxt = ""
         }
 
-        //Defining database
-        val database = FirebaseDatabase.getInstance()
+        val handler = Handler()
+        handler.postDelayed({   //Delay the real-time update to prevent overloading
 
-        //val options = FirebaseOptions.Builder()
-                //.setApiKey("AIzaSyCSc4UTyiRiPXl0s6B8ykO89H5ZoRhHhL0")
-                //.setApplicationId("solenoid-lock-f65e8")
-                //.setDatabaseUrl("https://console.firebase.google.com/u/0/project/solenoid-lock-f65e8/database/solenoid-lock-f65e8/data")
-                //.build()
+            //val options = FirebaseOptions.Builder()
+            //.setApiKey("AIzaSyAs_1NVtsjZ-LmTATAp0a0R5fK6XdKHaMU")
+            //.setApplicationId("981038862059")
+            //.setDatabaseUrl("https://console.firebase.google.com/project/bait2123-202010-03/database/bait2123-202010-03/data")
+            //.build()
 
-        //Write to common resources firebase
-        val data1 = database.getReference("PI_03_CONTROL/relay1")
-        data1.setValue(relay1)
-        val data2 = database.getReference("PI_03_CONTROL/relay2")
-        data2.setValue(relay2)
-        val data3 = database.getReference("PI_03_CONTROL/lcdscr")
-        data3.setValue(lcdscr)
-        val data4 = database.getReference("PI_03_CONTROL/lcdtxt")
-        data4.setValue(lcdtxt)
+            //Defining database
+            val database = FirebaseDatabase.getInstance()
 
-        val lightSensor= database.getReference("LightSensor")
-        lightSensor.setValue(event.values[0].toString())
+            //Write to common resources firebase
+            val data1 = database.getReference("PI_03_CONTROL/relay1")
+            data1.setValue(relay1)
+            val data2 = database.getReference("PI_03_CONTROL/relay2")
+            data2.setValue(relay2)
+            val data3 = database.getReference("PI_03_CONTROL/lcdscr")
+            data3.setValue(lcdscr)
+            val data4 = database.getReference("PI_03_CONTROL/lcdtxt")
+            data4.setValue(lcdtxt)
+
+            //val lightSensor= database.getReference("LightSensor")
+            //lightSensor.setValue(event.values[0].toString())
+
+        }, 1000)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
