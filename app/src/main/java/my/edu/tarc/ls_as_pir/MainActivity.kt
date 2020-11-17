@@ -70,14 +70,18 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         handler.postDelayed({   //Delay the real-time update to prevent overloading
 
             //Defining database
-            val database = FirebaseDatabase.getInstance("https://bait2123-202010-03.firebaseio.com")
-            //val database = FirebaseDatabase.getInstance("https://solenoid-lock-f65e8.firebaseio.com")
+            val database1 = FirebaseDatabase.getInstance("https://bait2123-202010-03.firebaseio.com")
+            val database2 = FirebaseDatabase.getInstance("https://solenoid-lock-f65e8.firebaseio.com")
 
             //Write to common resources firebase
-            val data1 = database.getReference("PI_03_CONTROL/relay1")
-            data1.setValue(relay1)
-            val data2 = database.getReference("PI_03_CONTROL/relay2")
-            data2.setValue(relay2)
+            val data1 = database1.getReference("PI_03_CONTROL")
+            data1.child("relay1").setValue(relay1)
+            data1.child("relay2").setValue(relay2)
+
+            //Write to personal firebase
+            val data2 = database2.getReference("PI_03_CONTROL")
+            data2.child("relay1").setValue(relay1)
+            data2.child("relay2").setValue(relay2)
 
             //val lightSensor= database.getReference("LightSensor")
             //lightSensor.setValue(event.values[0].toString())

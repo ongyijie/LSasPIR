@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "my.edu.tarc.lightsensor"
+        applicationId "my.edu.tarc.ls_as_pir"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
