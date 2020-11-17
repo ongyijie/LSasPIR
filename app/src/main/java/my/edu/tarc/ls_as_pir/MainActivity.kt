@@ -56,43 +56,28 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val reading: Float = event.values[0]
         var relay1: String = "0"    //Lights
         var relay2: String = "0"    //Air conditioner
-        var lcdscr: String = "0"    //Projector
-        var lcdtxt: String = ""
 
-        //if-else statement to trigger actions (switch on lights, air conditioner and projector)
+        //if-else statement to trigger actions (switch on lights and air conditioner)
         if (reading < 100) { //switch on
             relay1 = "1"
             relay2 = "1"
-            lcdscr = "1"
-            lcdtxt = "****Welcome!****"
         } else {             //switch off
             relay1 = "0"
             relay2 = "0"
-            lcdscr = "0"
-            lcdtxt = ""
         }
 
         val handler = Handler()
         handler.postDelayed({   //Delay the real-time update to prevent overloading
 
-            //val options = FirebaseOptions.Builder()
-            //.setApiKey("AIzaSyAs_1NVtsjZ-LmTATAp0a0R5fK6XdKHaMU")
-            //.setApplicationId("981038862059")
-            //.setDatabaseUrl("https://console.firebase.google.com/project/bait2123-202010-03/database/bait2123-202010-03/data")
-            //.build()
-
             //Defining database
-            val database = FirebaseDatabase.getInstance()
+            val database = FirebaseDatabase.getInstance("https://bait2123-202010-03.firebaseio.com")
+            //val database = FirebaseDatabase.getInstance("https://solenoid-lock-f65e8.firebaseio.com")
 
             //Write to common resources firebase
             val data1 = database.getReference("PI_03_CONTROL/relay1")
             data1.setValue(relay1)
             val data2 = database.getReference("PI_03_CONTROL/relay2")
             data2.setValue(relay2)
-            val data3 = database.getReference("PI_03_CONTROL/lcdscr")
-            data3.setValue(lcdscr)
-            val data4 = database.getReference("PI_03_CONTROL/lcdtxt")
-            data4.setValue(lcdtxt)
 
             //val lightSensor= database.getReference("LightSensor")
             //lightSensor.setValue(event.values[0].toString())
