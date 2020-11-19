@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         //Declaring variables
         val reading: Float = event.values[0]
-        var relay1: String = "0"    //Lights
-        var relay2: String = "0"    //Air conditioner
+        var relay1: String?    //Lights
+        var relay2: String?    //Air conditioner
 
         //if-else statement to trigger actions (switch on lights and air conditioner)
         if (reading < 100) { //switch on
